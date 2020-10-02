@@ -11,6 +11,7 @@ const port = process.env.PORT || 3000;
 // Model
 const User = require('./model/user.js');
 
+mongoose.set('useCreateIndex', true);
 mongoose.connect(process.env.DATABASE,
   { useNewUrlParser: true, useUnifiedTopology: true },
   (err) => {
