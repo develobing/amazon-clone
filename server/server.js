@@ -32,10 +32,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const productRoutes = require('./routes/product.js');
 const categoryRoutes = require('./routes/category.js');
 const OwnerRoutes = require('./routes/owner.js');
+const AuthRoutes = require('./routes/auth.js');
 
 app.use('/api', productRoutes);
 app.use('/api', categoryRoutes);
 app.use('/api', OwnerRoutes);
+app.use('/api', AuthRoutes);
 
 app.listen(port, (err) => {
   if (err) {
