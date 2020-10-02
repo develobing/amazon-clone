@@ -8,6 +8,9 @@ router.post('/products', upload.single('photo'), async (req, res) => {
     let product = new Product();
     product.title = req.body.title;
     product.description = req.body.description;
+    product.price = req.body.price;
+    product.ownerId = req.body.ownerId;
+    product.categoryId = req.body.categoryId;
     product.photo = req.file.location;
     product.stockQuantity = req.body.stockQuantity;
 
@@ -26,7 +29,6 @@ router.post('/products', upload.single('photo'), async (req, res) => {
     });
   }
 });
-
 
 // GET - Get all ProductSchema
 router.get('/products', async (req, res) => {

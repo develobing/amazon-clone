@@ -3,6 +3,8 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -20,6 +22,7 @@ mongoose.connect(process.env.DATABASE,
   });
 
 // Middlewares
+app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,7 +30,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Routes
 const productRoutes = require('./routes/product.js');
 const categoryRoutes = require('./routes/category.js');
-const OwnerRoutes = require('./routes/Owner.js');
+const OwnerRoutes = require('./routes/owner.js');
+
 app.use('/api', productRoutes);
 app.use('/api', categoryRoutes);
 app.use('/api', OwnerRoutes);

@@ -8,7 +8,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 11
   },
-  ignorePatterns: [ '/dist/*', '/src/plugins/*' ],
+  ignorePatterns: [ '/dist/*', '/src/plugins/*', '/static', '/public' ],
   rules: {
     quotes: [ 'warn', 'single' ], // String의 큰 따옴표 / 작은 따옴표 설정
     semi: [ 'warn', 'always' ], // Semicolon 설정
@@ -33,11 +33,38 @@ module.exports = {
     'comma-dangle': [ 'warn', 'never' ], // Trailing Comma 사용 여부
     'no-trailing-spaces': 'warn', // 빈 공간의 Indent Space 허용 여부
     'key-spacing': [ 'warn', { beforeColon: false, afterColon: true }], // Colon 앞/뒤에 띄어쓰기 여부
-    'space-infix-ops': [ 'warn', { int32Hint: false }] // 연산자 사이의 띄어쓰기 여부
+    'space-infix-ops': [ 'warn', { int32Hint: false }], // 연산자 사이의 띄어쓰기 여부
+    'spaced-comment': [ 'warn', 'always', { // 주석 표시 앞/뒤의 띄어쓰기 여부
+      line: {
+        markers: [ '/' ],
+        exceptions: [ '-', '+' ]
+      },
+      block: {
+        markers: [ '!' ],
+        exceptions: [ '*' ],
+        balanced: true
+      }
+    }],
+    'padding-line-between-statements': [ // 특정 명령어 뒤에 띄어쓰기 추가하는지 여부
+      'warn',
+      { blankLine: 'always', prev: [ 'import', 'cjs-import', 'case', 'default' ], next: '*' },
+      { blankLine: 'never', prev: [ 'import', 'cjs-import' ], next: [ 'import', 'cjs-import' ] },
+      { blankLine: 'always', prev: '*', next: [ 'try', 'return', 'class', 'export', 'cjs-export', 'block', 'block-like' ] }
+    ],
+    'no-multiple-empty-lines': [ 'warn', { max: 1 }], // 내용 없는 라인의 허용 개수
+    'no-unused-vars': 'warn' // 선언된 변수 중 사용되지 않은 변수 허용 여부
+    // curly: [ 'warn', 'multi-or-nest', 'consistent' ], // 명령어(if, while 등) 뒤의 {} 생략 가능 여부
+    // 'brace-style': [ 'warn', '1tbs', { allowSingleLine: true }],
+    // 'padded-blocks': [ 'warn', 'never', { allowSingleLineBlocks: true }],
+    // 'max-len': [ // 한 줄의 최대 글자 수
+    //   'warn',
+    //   100,
+    //   { ignoreUrls: true, ignoreComments: true, ignoreTrailingComments: true }
+    // ],
     // 'linebreak-style': 'off', // Line Break 를 Window(CRLF), Mac(LF) 허용 여부
     // 'no-undef': 'off', // 정의되지 않은 변수가 파일 내에 있을 경우, 점검 여부
     // 'no-alert': 'off', // alert 사용 허용 여부
-    // 'no-console': 'off', // console 사용 허용 여부
+    // 'no-console': 'off' // console 사용 허용 여부
     // 'no-debugger': 'off' // debugger 사용 허용 여부
   }
 };

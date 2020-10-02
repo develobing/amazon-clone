@@ -1,12 +1,14 @@
 const router = require('express').Router();
 const Owner = require('../model/owner.js');
+const upload = require('../middlewares/upload-photo');
 
-// POST - Create a new product
-router.post('/owners',  async (req, res) => {
+// POST - Create a new owner
+router.post('/owners', upload.single('photo'),  async (req, res) => {
   try {
     const owner = new Owner();
     owner.name = req.body.name;
     owner.about = req.body.about;
+    owner.about = req.file.location;
 
     await owner.save();
 
@@ -24,14 +26,14 @@ router.post('/owners',  async (req, res) => {
   }
 });
 
-// GET - Get categories
+// GET - Get owners
 router.get('/owners', async (req, res) => {
   try {
-    let categories = await Owner.find();
+    let owners = await Owner.find();
 
     res.json({
       success: true,
-      categories
+      owners
     });
 
   } catch (err) {
