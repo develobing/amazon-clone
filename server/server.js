@@ -1,10 +1,11 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -33,11 +34,13 @@ const productRoutes = require('./routes/product.js');
 const categoryRoutes = require('./routes/category.js');
 const OwnerRoutes = require('./routes/owner.js');
 const AuthRoutes = require('./routes/auth.js');
+const ReviewRoutes = require('./routes/review.js');
 
 app.use('/api', productRoutes);
 app.use('/api', categoryRoutes);
 app.use('/api', OwnerRoutes);
 app.use('/api', AuthRoutes);
+app.use('/api', ReviewRoutes);
 
 app.listen(port, (err) => {
   if (err) {

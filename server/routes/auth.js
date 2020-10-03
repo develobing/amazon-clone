@@ -1,7 +1,8 @@
-const router = require('express').Router();
+const express = require('express');
 const User = require('../model/user.js');
 const jwt = require('jsonwebtoken');
 const verifyToken = require('../middlewares/verify-token.js');
+const router = express.Router();
 
 // Signup route
 router.post('/auth/signup', async (req, res) => {
@@ -23,10 +24,11 @@ router.post('/auth/signup', async (req, res) => {
 
     } catch (err) {
       console.log('err', err);
-      res.status(500).json({
-        success: false,
-        message: err.message
-      });
+      res.status(500)
+        .json({
+          success: false,
+          message: err.message
+        });
     }
   }
 });
@@ -42,10 +44,11 @@ router.get('/auth/user', verifyToken, async (req, res) => {
 
   } catch (err) {
     console.log('err', err);
-    res.status(500).json({
-      success: false,
-      message: err.message
-    });
+    res.status(500)
+      .json({
+        success: false,
+        message: err.message
+      });
   }
 });
 
@@ -66,10 +69,11 @@ router.put('/auth/user', verifyToken, async (req, res) => {
 
   } catch (err) {
     console.log('err', err);
-    res.status(500).json({
-      success: false,
-      message: err.message
-    });
+    res.status(500)
+      .json({
+        success: false,
+        message: err.message
+      });
   }
 });
 
@@ -79,7 +83,8 @@ router.post('/auth/login', async (req, res) => {
     let foundUser = await User.findOne({ email: req.body.email });
 
     if (!foundUser) {
-      res.status(403).json({ success: false, message: 'Authentication failed, User not found.' });
+      res.status(403)
+        .json({ success: false, message: 'Authentication failed, User not found.' });
 
     } else {
       if (foundUser.comparePassword(req.body.password)) {
@@ -90,15 +95,17 @@ router.post('/auth/login', async (req, res) => {
         res.json({ success: true, token });
 
       } else {
-        res.status(403).json({ success: false, message: 'Authentication failed, wrong password.' });
+        res.status(403)
+          .json({ success: false, message: 'Authentication failed, wrong password.' });
       }
     }
   } catch (err) {
     console.log('err', err);
-    res.status(500).json({
-      success: false,
-      message: err.message
-    });
+    res.status(500)
+      .json({
+        success: false,
+        message: err.message
+      });
   }
 });
 

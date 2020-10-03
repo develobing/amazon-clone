@@ -4,7 +4,7 @@ module.exports = {
     es2020: true,
     node: true
   },
-  extends: 'eslint:recommended',
+  extends: '',
   parserOptions: {
     ecmaVersion: 11
   },
@@ -49,8 +49,11 @@ module.exports = {
       'warn',
       { blankLine: 'always', prev: [ 'import', 'cjs-import', 'case', 'default' ], next: '*' },
       { blankLine: 'never', prev: [ 'import', 'cjs-import' ], next: [ 'import', 'cjs-import' ] },
-      { blankLine: 'always', prev: '*', next: [ 'try', 'return', 'class', 'export', 'cjs-export', 'block', 'block-like' ] }
+      { blankLine: 'any', prev: [ 'cjs-import' ], next: [ 'let', 'const' ] },
+      { blankLine: 'always', prev: '*', next: [ 'try', 'class', 'export', 'cjs-export', 'block', 'block-like' ] },
+      { blankLine: 'always', prev: [ 'block', 'block-like' ], next: '*' }
     ],
+    'newline-per-chained-call': [ 'warn', { ignoreChainWithDepth: 1 }], // 함수 chain 할 때 줄바꿈 여부
     'no-multiple-empty-lines': [ 'warn', { max: 1 }], // 내용 없는 라인의 허용 개수
     'no-unused-vars': 'warn' // 선언된 변수 중 사용되지 않은 변수 허용 여부
     // curly: [ 'warn', 'multi-or-nest', 'consistent' ], // 명령어(if, while 등) 뒤의 {} 생략 가능 여부

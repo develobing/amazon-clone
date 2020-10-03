@@ -1,6 +1,7 @@
-const router = require('express').Router();
+const express = require('express');
 const Owner = require('../model/owner.js');
 const upload = require('../middlewares/upload-photo');
+const router = express.Router();
 
 // POST - Create a new owner
 router.post('/owners', upload.single('photo'),  async (req, res) => {
@@ -19,10 +20,11 @@ router.post('/owners', upload.single('photo'),  async (req, res) => {
 
   } catch (err) {
     console.log('err', err);
-    res.status(500).json({
-      success: false,
-      message: err.message
-    });
+    res.status(500)
+      .json({
+        success: false,
+        message: err.message
+      });
   }
 });
 
@@ -38,10 +40,11 @@ router.get('/owners', async (req, res) => {
 
   } catch (err) {
     console.log('err', err);
-    res.status(500).json({
-      success: false,
-      message: err.message
-    });
+    res.status(500)
+      .json({
+        success: false,
+        message: err.message
+      });
   }
 });
 

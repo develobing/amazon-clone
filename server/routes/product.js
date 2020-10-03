@@ -1,6 +1,7 @@
-const router = require('express').Router();
+const express = require('express');
 const Product = require('../model/product.js');
 const upload = require('../middlewares/upload-photo');
+const router = express.Router();
 
 // POST - Create a new product
 router.post('/products', upload.single('photo'), async (req, res) => {
@@ -20,51 +21,57 @@ router.post('/products', upload.single('photo'), async (req, res) => {
       status: true,
       message: 'Successfully created a new product.'
     });
-
   } catch (err) {
     console.log('err', err);
-    res.status(500).json({
-      success: false,
-      message: err.message
-    });
+    res.status(500)
+      .json({
+        success: false,
+        message: err.message
+      });
   }
 });
 
 // GET - Get all ProductSchema
 router.get('/products', async (req, res) => {
   try {
-    let products = await Product.find().populate('owner category').exec();
+    let products = await Product.find()
+      .populate('owner category')
+      .populate('reviews', 'rating')
+      .exec();
 
     res.json({
       success: true,
       products
     });
-
   } catch (err) {
     console.log('err', err);
-    res.status(500).json({
-      success: false,
-      message: err.message
-    });
+    res.status(500)
+      .json({
+        success: false,
+        message: err.message
+      });
   }
 });
 
 // GET - Get a single product
 router.get('/products/:id', async (req, res) => {
   try {
-    let product = await Product.findOne({ _id: req.params.id }).populate('owner category').exec();
+    let product = await Product.findOne({ _id: req.params.id })
+      .populate('owner category')
+      .populate('reviews', 'rating')
+      .exec();
 
     res.json({
       success: true,
       product
     });
-
   } catch (err) {
     console.log('err', err);
-    res.status(500).json({
-      success: false,
-      message: err.message
-    });
+    res.status(500)
+      .json({
+        success: false,
+        message: err.message
+      });
   }
 });
 
@@ -90,13 +97,13 @@ router.put('/products/:id', upload.single('photo'), async (req, res) => {
       success: true,
       updatedProduct: product
     });
-
   } catch (err) {
     console.log('err', err);
-    res.status(500).json({
-      success: false,
-      message: err.message
-    });
+    res.status(500)
+      .json({
+        success: false,
+        message: err.message
+      });
   }
 });
 
@@ -111,13 +118,13 @@ router.delete('/products/:id', async (req, res) => {
         message: 'Successfully deleted.'
       });
     }
-
   } catch (err) {
     console.log('err', err);
-    res.status(500).json({
-      success: false,
-      message: err.message
-    });
+    res.status(500)
+      .json({
+        success: false,
+        message: err.message
+      });
   }
 });
 

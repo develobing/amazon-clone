@@ -1,5 +1,6 @@
-const router = require('express').Router();
+const express = require('express');
 const Category = require('../model/category.js');
+const router = express.Router();
 
 // POST - Create a new product
 router.post('/categories',  async (req, res) => {
@@ -16,10 +17,11 @@ router.post('/categories',  async (req, res) => {
 
   } catch (err) {
     console.log('err', err);
-    res.status(500).json({
-      success: false,
-      message: err.message
-    });
+    res.status(500)
+      .json({
+        success: false,
+        message: err.message
+      });
   }
 });
 
@@ -35,10 +37,11 @@ router.get('/categories', async (req, res) => {
 
   } catch (err) {
     console.log('err', err);
-    res.status(500).json({
-      success: false,
-      message: err.message
-    });
+    res.status(500)
+      .json({
+        success: false,
+        message: err.message
+      });
   }
 });
 
