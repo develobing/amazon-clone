@@ -33,14 +33,14 @@
                       <div class="col-sm-9">
                         <!-- Title and Date -->
                         <div class="a-row a-spacing-small">
-                          <a href="#" class="a-link-normal">
+                          <nuxt-link :to="`/products/${product._id}`" class="a-link-normal">
                             <h2 class="a-size-medium">
                               {{ product.title }}
                               <span class="a-letter-space" />
                               <span class="a-letter-space" />
                               <span class="a-size-small a-color-secondary">Sep 3, 2019</span>
                             </h2>
-                          </a>
+                          </nuxt-link>
                         </div>
 
                         <!-- Author's name -->
@@ -95,7 +95,19 @@
                           <!-- Ratings -->
                           <div class="col-sm-5">
                             <div class="a-row a-spacing-mini">
-                            <!-- Star Ratings -->
+                              <!-- Star Ratings -->
+                              <client-only>
+                                <StarRating
+                                  :rating="product.averageRating"
+                                  :show-rating="false"
+                                  :glow="1"
+                                  :border-width="1"
+                                  :rounded-corner="true"
+                                  :read-only="true"
+                                  :star-size="18"
+                                  :star-points="[ 23, 2, 14, 17, 0, 19, 10, 34, 7, 50, 23, 43, 38, 50, 36 ,34, 46, 19, 31, 17 ]"
+                                />
+                              </client-only>
                             </div>
                           </div>
                         </div>

@@ -98,7 +98,21 @@
                 </a> (Author)
               </div>
 
-              <div class="reviewGroup" />
+              <div class="reviewGroup">
+                <!-- Star Ratings -->
+                <client-only>
+                  <StarRating
+                    :rating="product.averageRating"
+                    :show-rating="false"
+                    :glow="1"
+                    :border-width="1"
+                    :rounded-corner="true"
+                    :read-only="true"
+                    :star-size="18"
+                    :star-points="[ 23, 2, 14, 17, 0, 19, 10, 34, 7, 50, 23, 43, 38, 50, 36 ,34, 46, 19, 31, 17 ]"
+                  />
+                </client-only>
+              </div>
               <hr style="margin-top: 10px;">
 
               <!-- A tags Dummy Data -->
@@ -370,6 +384,8 @@
             </div>
           </div>
         </div>
+
+        <ReviewSection :product="product" :reviews="reviews" />
       </div>
     </div>
   </main>
@@ -379,11 +395,16 @@
 export default {
   async asyncData({ $axios, params }) {
     try {
-      const response = await $axios.$get(`/api/products/${params.id}`);
-      console.log('response', response);
+      const singleProduct = $axios.$get(`/api/products/${params.id}`);
+      const manyReviews = $axios.$get(`/api/reviews/${params.id}`);
+
+      const [ productResponse, reviewsResponse ] = await Promise.all([ singleProduct, manyReviews ]);
+      console.log('productResponse', productResponse);
+      console.log('reviewsResponse', reviewsResponse);
 
       return {
-        product: response.product
+        product: productResponse.product,
+        reviews: reviewsResponse.reviews
       };
     } catch (err) {
       console.log('err', err);
