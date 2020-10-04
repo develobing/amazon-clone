@@ -45,7 +45,7 @@ module.exports = {
       { blankLine: 'always', prev: '*', next: [ 'try', 'class', 'export', 'cjs-export', 'block', 'block-like' ] },
       { blankLine: 'always', prev: [ 'block', 'block-like' ], next: '*' }
     ]
-    // curly: [ 'warn', 'multi-or-nest', 'consistent' ], // 명령어(if, while 등) 뒤의 {} 생략 가능 여부
+    // curly: [ 'warn', 'multi-or-nest', 'consistent' ] // 명령어(if, while 등) 뒤의 {} 생략 가능 여부
     // 'brace-style': [ 'warn', '1tbs', { allowSingleLine: true }],
     // 'padded-blocks': [ 'warn', 'never', { allowSingleLineBlocks: true }],
     // 'max-len': [ 'warn', 100, { ignoreUrls: true, ignoreComments: true }] // 한 줄의 최대 글자 수

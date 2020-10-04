@@ -277,7 +277,7 @@
                 </div>
 
                 <div class="a-section">
-                  <div class="a-button-stack">
+                  <div class="a-button-stack" @click="addProductToCart(product)">
                     <span class="a-spacing-small a-button-primary a-button-icon">
                       <span class="a-button-inner">
                         <i class="a-icon a-icon-cart" />
@@ -392,6 +392,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   async asyncData({ $axios, params }) {
     try {
@@ -409,6 +411,10 @@ export default {
     } catch (err) {
       console.log('err', err);
     }
+  },
+
+  methods: {
+    ...mapActions([ 'addProductToCart' ])
   }
 };
 </script>

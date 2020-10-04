@@ -11,8 +11,7 @@ module.exports = {
     '@nuxtjs',
     'plugin:nuxt/base'
   ],
-  plugins: [
-  ],
+  plugins: [],
   ignorePatterns: [ '/dist/*', '/src/plugins/*', '/static', '/public' ],
   rules: {
     quotes: [ 'warn', 'single' ], // String의 큰 따옴표 / 작은 따옴표 설정
