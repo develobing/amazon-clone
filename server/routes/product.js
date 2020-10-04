@@ -24,10 +24,7 @@ router.post('/products', upload.single('photo'), async (req, res) => {
   } catch (err) {
     console.log('err', err);
     res.status(500)
-      .json({
-        success: false,
-        message: err.message
-      });
+      .json({ success: false, message: err.message });
   }
 });
 
@@ -46,10 +43,7 @@ router.get('/products', async (req, res) => {
   } catch (err) {
     console.log('err', err);
     res.status(500)
-      .json({
-        success: false,
-        message: err.message
-      });
+      .json({ success: false, message: err.message });
   }
 });
 
@@ -68,10 +62,7 @@ router.get('/products/:id', async (req, res) => {
   } catch (err) {
     console.log('err', err);
     res.status(500)
-      .json({
-        success: false,
-        message: err.message
-      });
+      .json({ success: false, message: err.message });
   }
 });
 
@@ -100,10 +91,7 @@ router.put('/products/:id', upload.single('photo'), async (req, res) => {
   } catch (err) {
     console.log('err', err);
     res.status(500)
-      .json({
-        success: false,
-        message: err.message
-      });
+      .json({ success: false, message: err.message });
   }
 });
 
@@ -121,10 +109,7 @@ router.delete('/products/:id', async (req, res) => {
   } catch (err) {
     console.log('err', err);
     res.status(500)
-      .json({
-        success: false,
-        message: err.message
-      });
+      .json({ success: false, message: err.message });
   }
 });
 

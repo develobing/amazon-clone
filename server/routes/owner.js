@@ -21,10 +21,7 @@ router.post('/owners', upload.single('photo'),  async (req, res) => {
   } catch (err) {
     console.log('err', err);
     res.status(500)
-      .json({
-        success: false,
-        message: err.message
-      });
+      .json({ success: false, message: err.message });
   }
 });
 
@@ -41,10 +38,7 @@ router.get('/owners', async (req, res) => {
   } catch (err) {
     console.log('err', err);
     res.status(500)
-      .json({
-        success: false,
-        message: err.message
-      });
+      .json({ success: false, message: err.message });
   }
 });
 

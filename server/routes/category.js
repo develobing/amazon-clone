@@ -18,10 +18,7 @@ router.post('/categories',  async (req, res) => {
   } catch (err) {
     console.log('err', err);
     res.status(500)
-      .json({
-        success: false,
-        message: err.message
-      });
+      .json({ success: false, message: err.message });
   }
 });
 
@@ -38,10 +35,7 @@ router.get('/categories', async (req, res) => {
   } catch (err) {
     console.log('err', err);
     res.status(500)
-      .json({
-        success: false,
-        message: err.message
-      });
+      .json({ success: false, message: err.message });
   }
 });
 

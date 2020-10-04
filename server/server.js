@@ -35,12 +35,14 @@ const categoryRoutes = require('./routes/category.js');
 const OwnerRoutes = require('./routes/owner.js');
 const AuthRoutes = require('./routes/auth.js');
 const ReviewRoutes = require('./routes/review.js');
+const AddressRoutes = require('./routes/address.js');
 
 app.use('/api', productRoutes);
 app.use('/api', categoryRoutes);
 app.use('/api', OwnerRoutes);
 app.use('/api', AuthRoutes);
 app.use('/api', ReviewRoutes);
+app.use('/api', AddressRoutes);
 
 app.listen(port, (err) => {
   if (err) {

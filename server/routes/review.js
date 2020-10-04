@@ -19,10 +19,7 @@ router.get('/reviews/:productId', async (req, res) => {
   } catch (err) {
     console.log('err', err);
     res.status(500)
-      .json({
-        success: false,
-        message: err.message
-      });
+      .json({ success: false, message: err.message });
   }
 });
 
@@ -47,10 +44,7 @@ router.post('/reviews/:productId', [ verifyToken, upload.single('photo') ], asyn
   } catch (err) {
     console.log('err', err);
     res.status(500)
-      .json({
-        success: false,
-        message: err.message
-      });
+      .json({ success: false, message: err.message });
   }
 });
 
