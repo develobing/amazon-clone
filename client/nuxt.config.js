@@ -18,7 +18,8 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: '/css/font-awesome/css/all.css' },
       { rel: 'stylesheet', href: '/css/default.css' }
-    ]
+    ],
+    script: [{ src: 'https://js.stripe.com/v3' }]
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
