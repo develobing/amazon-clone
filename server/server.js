@@ -38,6 +38,7 @@ const reviewRoutes = require('./routes/review.js');
 const addressRoutes = require('./routes/address.js');
 const paymentRoutes = require('./routes/payment.js');
 const orderRoutes = require('./routes/order.js');
+const searchRoutes = require('./routes/search.js');
 
 app.use('/api', productRoutes);
 app.use('/api', categoryRoutes);
@@ -47,6 +48,7 @@ app.use('/api', reviewRoutes);
 app.use('/api', addressRoutes);
 app.use('/api', paymentRoutes);
 app.use('/api', orderRoutes);
+app.use('/api', searchRoutes);
 
 app.listen(port, (err) => {
   if (err) {
